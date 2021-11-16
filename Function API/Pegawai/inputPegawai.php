@@ -1,6 +1,6 @@
 <?php 
     $koneksi = new mysqli("localhost","root","","spacecapt_tech");
-    header('Content-Type: application/json');
+    // header('Content-Type: application/json');
 
     $Id_Pegawai = htmlspecialchars($_POST['Id_Pegawai']); 
     $Id_Jabatan = htmlspecialchars($_POST['Id_Jabatan']);

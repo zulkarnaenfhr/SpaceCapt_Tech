@@ -4,12 +4,6 @@
     
     if (isset($_POST["registerAdmin"])) {
 
-        // $sumber = adminRegistration($_POST);
-        // $apiReadPegawai = 'http://localhost/phpDasar/6.%20Tugas%20Rest%20Api/Function%20API/Admin/InputAdmin.php';
-        // $konten = file_get_contents($apiReadPegawai);
-        // $data = json_decode($konten);
-        // echo $data;
-
         $queryInputAdmin = adminRegistration($_POST);
         
         if ($queryInputAdmin == 0) {

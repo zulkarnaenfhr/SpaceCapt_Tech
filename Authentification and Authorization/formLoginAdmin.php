@@ -1,3 +1,37 @@
+<?php 
+    session_start();
+    include '../Function API/Admin/loginAdmin.php';
+
+    // if (isset($_SESSION["login"])) {
+    //     header('Location:../homepage.php');
+    // }
+
+    if (isset($_POST["login"])) {
+        $username = $_POST["username"];
+        $password = $_POST["password"];
+        
+        $loginAdmin = loginAdmin($username,$password);
+
+        if ($loginAdmin == 0) {
+            echo "<script>
+                    alert ('Password Tidak Cocok')
+                </script>";
+            header('Location:formLoginAdmin.php');
+        }elseif ($loginAdmin == 1) {
+            $_SESSION["login"] = true;    
+            echo "<script>
+                alert ('Selamat Datang')
+            </script>";
+            header('Location:../index.php');
+        }elseif ($loginAdmin == 2) {
+            echo "<script>
+                    alert ('Username Tidak Ditemukan')
+                </script>";
+            header('Location:formLoginAdmin.php');
+        }
+    }
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -16,7 +50,7 @@
     <!-- link css login -->
     <link rel="stylesheet" href="../src/Style/Style Authentication and Authorization/StyleFormLogin.css">
 
-    <title>LandingPage SpaceCapt University</title>
+    <title>Login Admin</title>
 </head>
 
 <body>
@@ -65,7 +99,7 @@
                                     <li>
                                         <button type="submit" name="login">Log In</button>
                                         <button name="registerUser">
-                                            <a id="buttonRegister" href="register.php">register Account</a>
+                                            <a id="buttonRegister" href="registerAdmin.php">register Account</a>
                                         </button>
                                     </li>
                                 </ul>

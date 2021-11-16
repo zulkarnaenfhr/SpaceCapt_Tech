@@ -1,3 +1,13 @@
+<?php 
+    session_start();
+
+    if (!isset($_SESSION["loginPass"])) {
+        echo "<script>
+                document.location.href = 'Authentification and Authorization/formLoginAdmin.php'
+            </script>";
+    }
+?>
+
 <!doctype html>
 <html lang="en">
 

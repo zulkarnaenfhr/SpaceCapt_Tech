@@ -1,6 +1,5 @@
 <?php 
     $koneksi = new mysqli("localhost","root","","spacecapt_tech");
-    header("Access-Control-Allow-Origin: *");
 
     $queryAmbilSeluruhDataPegawai = mysqli_query($koneksi,"SELECT * FROM pegawai INNER JOIN jabatan on pegawai.Id_Jabatan = jabatan.id_Jabatan");
 
@@ -16,6 +15,7 @@
                 'Kota_Asal_Pegawai' =>$data['Kota_Asal_Pegawai']
             ));
         }
+    // header('Content-Type: application/json');
         echo json_encode($hasilData);
     }
 
