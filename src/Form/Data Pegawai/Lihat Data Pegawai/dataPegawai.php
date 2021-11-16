@@ -9,9 +9,12 @@
 ?>
 
 <?php 
+    // code dibawah dimasukin if not set
     $apiReadPegawai = 'http://localhost/phpDasar/6.%20Tugas%20Rest%20Api/Function%20API/Pegawai/readPegawai.php';
     $konten = file_get_contents($apiReadPegawai);
     $data = json_decode($konten);
+
+    // terus buat code buat di set in, ntar passing ke cariDataPegawai
 ?>
 <?php 
     include '../../../../Function API/pegawai/hapusPegawai.php';

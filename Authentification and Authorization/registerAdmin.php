@@ -46,6 +46,7 @@
     }
 ?>
 
+
 <!doctype html>
 <html lang="en">
 
@@ -64,7 +65,7 @@
     <!-- link css navbar -->
     <link rel="stylesheet" href="../src/Style/Style Navbar/styleNavbar.css">
 
-    <title>LandingPage SpaceCapt University</title>
+    <title>Register Admin</title>
 </head>
 
 <body>
@@ -85,7 +86,7 @@
                         <a id="navbar-menu" class="nav-link active" aria-current="page" href="#">CRUD Data Pegawai</a>
                     </li>
                     <li class="nav-item">
-                            <a id="navbar-menu" class="nav-link active" aria-current="page" href="logout.php">Log Out</a>
+                            <a id="navbar-menu" class="nav-link active" aria-current="page" href="formLoginAdmin.php">Log In</a>
                         </li>
                 </ul>
             </div>
