@@ -1,0 +1,33 @@
+#formTambahPegawai {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#formTambahPegawai ul {
+    list-style-type: none;
+    display: block;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.dataTambahPegawai ul li {
+    margin-top: 1rem;
+}
+
+.dataTambahPegawai ul li input{
+    margin-left: 1rem;
+}
+
+.dataTambahPegawai ul li label {
+    width: 500px;
+}
+
+#selectJabatan{
+    margin-left: -19.5rem;
+}

@@ -1,45 +1,23 @@
 <?php 
     include '../../../../config.php';
+    function cekIdPegawai ($keyword){
+        global $koneksi;
+
+        $queryIdPegawai = mysqli_query($koneksi,"SELECT * FROM pegawai WHERE Id_Pegawai = '$keyword'");
+
+        return $queryIdPegawai;
+    }
+
+    $ambilIdPegawai = $_POST['Id_Pegawai'];
+    $queryAmbilDataPegawai = cekIdPegawai($ambilIdPegawai);
+    $data = mysqli_fetch_assoc($queryAmbilDataPegawai);
 ?>
 <?php 
-    include '../../../../Function API/Pegawai/inputPegawai.php';
-
-    if (isset($_POST["tambahPegawai"])) {
-        $queryTambahDataPegawai = TambahDataPegawai($_POST);
-
-        if ($queryTambahDataPegawai == 0) {
-            echo "<script>
-                    alert('Tambah Data Pegawai Gagal')
-                </script>";
-            echo "<script>
-                    document.location.href = '../Lihat Data Pegawai/dataPegawai.php'
-                </script>";  
-        } elseif ($queryTambahDataPegawai == 1) {
-            echo "<script>
-                    alert('Tambah Data Pegawai Berhasil')
-                </script>";
-            echo "<script>
-                    document.location.href = '../Lihat Data Pegawai/dataPegawai.php'
-                </script>";  
-        } elseif ($queryTambahDataPegawai == 2) {
-            echo "<script>
-                    alert('Id Pegawai Telah Ditemukan')
-                </script>";
-            echo "<script>
-                    document.location.href = '../Lihat Data Pegawai/dataPegawai.php'
-                </script>";  
-        } 
-        else {
-            echo "<script>
-                    alert('Error Code Tidak Terdeteksi')
-                </script>";
-            echo "<script>
-                    document.location.href = '../Lihat Data Pegawai/dataPegawai.php'
-                </script>";  
-        }
+    include '../../../../Function API/Pegawai/editDataPegawai.php';
+    if (isset($_POST["editDataPegawai"])) {
+        $queryEditDataPegawai = editDataPegawai($_POST);
     }
 ?>
-
 
 <!doctype html>
 <html lang="en">
@@ -94,12 +72,13 @@
                         </li>
                         <li>
                             <form class="dataTambahPegawai" action="" method="post">
+                                <input type="hidden" name="Id_PegawaiLama" value="<?php echo $data["Id_Pegawai"]?>">
                                 <ul>
                                     <li class="row">
                                         <div class="col-5">
                                             <label" for="Id_Pegawai">Id Pegawai :</label>
                                         </div>
-                                        <div class="col-6"> <input type="text" name="Id_Pegawai" id="Id_Pegawai"> </div>
+                                        <div class="col-6"> <input value="<?php echo $data["Id_Pegawai"]?>" type="text" name="Id_PegawaiBaru" id="Id_PegawaiBaru"> </div>
                                     </li>
                                     <li>
                                         <label for="">Jabatan :</label>
@@ -116,17 +95,19 @@
                                         <div class="col-5">
                                             <label" for="Nama_Pegawai">Nama Pegawai :</label>
                                         </div>
-                                        <div class="col-6"> <input type="text" name="Nama_Pegawai" id="Nama_Pegawai"> </div>
+                                        <div class="col-6"> <input value="<?php echo $data["Nama_Pegawai"]?>" type="text" name="Nama_Pegawai" id="Nama_Pegawai">
+                                        </div>
                                     </li>
                                     <li class="row">
                                         <div class="col-5">
                                             <label" for="Kota_Asal_Pegawai">Kota Asal Pegawai :</label>
                                         </div>
-                                        <div class="col-6"> <input type="text" name="Kota_Asal_Pegawai" id="Kota_Asal_Pegawai"> </div>
+                                        <div class="col-6"> <input value="<?php echo $data["Kota_Asal_Pegawai"]?>" type="text" name="Kota_Asal_Pegawai"
+                                                id="Kota_Asal_Pegawai"> </div>
                                     </li>
-                                    
+
                                     <li>
-                                        <button type="submit" name="tambahPegawai">Register Account</button>
+                                        <button type="submit" name="editDataPegawai">Edit Data Pegawai</button>
                                     </li>
                                 </ul>
                             </form>

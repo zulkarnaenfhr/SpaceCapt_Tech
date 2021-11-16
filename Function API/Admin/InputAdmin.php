@@ -21,14 +21,14 @@
         // cek apakah ada username atau tidak
         $cekUsername = cekUser($username);
         if (mysqli_fetch_assoc($cekUsername)) {
-            header('Contnt-Type: application/json');
+            // header('Content-Type: application/json');
             echo json_encode(array('status' => '2','message' => 'Username Telah Ditemukan!'));
             return 2;
         }
         
         // confirmasi password
         if ($password !== $confirmPassword) {
-            header('Contnt-Type: application/json');
+            // header('Content-Type: application/json');
             echo json_encode(array('status' => '3','message' => 'Password Tidak Cocok!'));
             return 3;                                
         }
@@ -40,11 +40,11 @@
         $queryTambahUser = mysqli_query($koneksi,"INSERT INTO administrasi  VALUES ('$username','$password')");
         
         if ($queryTambahUser) {
-            header('Contnt-Type: application/json');
+            // header('Content-Type: application/json');
             echo json_encode(array('status' => '1','message' => 'created!'));
             return 1;
         }else {
-            header('Contnt-Type: application/json');
+            // header('Content-Type: application/json');
             echo json_encode(array('status' => '0','message' => 'error!'));
             return 0;
         }

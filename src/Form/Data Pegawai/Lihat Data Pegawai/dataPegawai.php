@@ -3,6 +3,39 @@
     $konten = file_get_contents($apiReadPegawai);
     $data = json_decode($konten);
 ?>
+<?php 
+    include '../../../../Function API/pegawai/hapusPegawai.php';
+
+    if (isset($_POST["hapusData"])) {
+        $Id_Pegawai = $_POST["Id_Pegawai"];
+
+        // echo "$Id_Pegawai";
+        $queryHapusDataPegawai = hapusDataPegawai($Id_Pegawai);
+
+        if ($queryHapusDataPegawai == 0) {
+            echo "<script>
+                    alert('Gagal Menghapus Data')
+                </script>";
+            echo "<script>
+                    document.location.href = 'dataPegawai.php'
+                </script>";  
+        }elseif ($queryHapusDataPegawai == 1) {
+            echo "<script>
+                    alert('Berhasil Menghapus Data')
+                </script>";
+            echo "<script>
+                    document.location.href = 'dataPegawai.php'
+                </script>";  
+        }else {
+            echo "<script>
+                    alert('Error Code Tidak Diketahui')
+                </script>";
+            echo "<script>
+                    document.location.href = 'dataPegawai.php'
+                </script>";  
+        }
+    }
+?>
 
 <!doctype html>
 <html lang="en">
@@ -22,7 +55,7 @@
     <!-- link css navbar -->
     <link rel="stylesheet" href="../../../Style/Style Navbar/styleNavbar.css">
 
-    <title>LandingPage SpaceCapt University</title>
+    <title>Data Pegawai</title>
 </head>
 
 <body>
@@ -62,10 +95,9 @@
                             </form>
                         </div>
                         <div class="col-6 option-right">
-                            <?php 
-                                    $idForm = 11;
-                                    echo "<a href='../../form/form Tambah Data/formTambahDataMahasiswa.php?id=".$idForm."'><button >Masukkan Data Baru</button></a> ";
-                                ?>
+                            <a href="../Tambah Data Pegawai/tambahDataPegawai.php">
+                                <button>Masukkan Data Baru</button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -106,26 +138,23 @@
                                 </th>
                                 <th class="isi-tableOption">
                                     <ul>
-                                            <li>
-                                                <form
-                                                    action=""
-                                                    name="hapusData"
-                                                    method="POST">
-                                                    <input type="hidden" name="npmHapus" value="<?php echo $row->Id_Pegawai ;?>">
-                                                    <button type="submit" name="hapusData">Hapus</button>
-                                                </form>
-                                            </li>
-                                            <li>
-                                                <form action="" method="POST">
-                                                    <input type="hidden" name="npmEdit" value="<?php echo $row->Id_Pegawai ;?>">
-                                                    <button type="submit" name="editData">Edit</button>
-                                                </form>
-                                            </li>
-                                        </ul>
+                                        <li>
+                                            <form action="" method="post">
+                                                <input type="hidden" name="Id_Pegawai"
+                                                    value="<?php echo $row->Id_Pegawai;?>">
+                                                <button type="submit" name="hapusData">Hapus</button>
+                                            </form>
+                                        </li>
+                                        <li>
+                                            <form action="../Edit Data Pegawai/editDataPegawai.php" method="POST">
+                                                <input type="hidden" name="Id_Pegawai"
+                                                    value="<?php echo $row->Id_Pegawai;?>">
+                                                <button type="submit" name="editData">Edit</button>
+                                            </form>
+                                        </li>
+                                    </ul>
                                 </th>
                             </tr>
-
-
                             <?php }
                             ?>
                         </table>

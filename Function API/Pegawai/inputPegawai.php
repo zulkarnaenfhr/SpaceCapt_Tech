@@ -2,17 +2,40 @@
     $koneksi = new mysqli("localhost","root","","spacecapt_tech");
     // header('Content-Type: application/json');
 
-    $Id_Pegawai = htmlspecialchars($_POST['Id_Pegawai']); 
-    $Id_Jabatan = htmlspecialchars($_POST['Id_Jabatan']);
-    $Nama_Pegawai = htmlspecialchars($_POST['Nama_Pegawai']);
-    $Kota_Asal_Pegawai = htmlspecialchars($_POST['Kota_Asal_Pegawai']);
-    
-    $queryInsertDataPegawai = mysqli_query($koneksi,"INSERT INTO pegawai VALUES('$Id_Pegawai','$Id_Jabatan','$Nama_Pegawai','$Kota_Asal_Pegawai')");
-    
-    // berhasil atau tidak
-    if ($queryInsertDataPegawai) {
-        echo json_encode(array('message' => 'created!'));
-    }else {
-        echo json_encode(array('message' => 'error!'));
+    function cekIdPegawai ($keyword){
+        global $koneksi;
+
+        $queryIdPegawai = mysqli_query($koneksi,"SELECT * FROM pegawai WHERE Id_Pegawai = '$keyword'");
+
+        return $queryIdPegawai;
+    }
+
+    function TambahDataPegawai ($data){
+        global $koneksi;
+
+        $Id_Pegawai = $data["Id_Pegawai"];
+        $Id_Jabatan = $data["Id_Jabatan"];
+        $Nama_Pegawai = $data["Nama_Pegawai"];
+        $Kota_Asal_Pegawai = $data["Kota_Asal_Pegawai"];
+
+        $cekIdPegawai = cekIdPegawai($Id_Pegawai);
+
+        if (mysqli_fetch_assoc($cekIdPegawai)) {
+            // header('Content-Type: application/json');
+            echo json_encode(array('status' => '2','message' => 'Id Pegawai Telah Ada!'));
+            return 2;
+        }
+
+        $queryTambahPegawai = mysqli_query($koneksi,"INSERT INTO pegawai VALUES ('$Id_Pegawai','$Id_Jabatan','$Nama_Pegawai','$Kota_Asal_Pegawai')");
+
+        if ($queryTambahPegawai) {
+            // header('Content-Type: application/json');
+            echo json_encode(array('status' => '1','message' => 'Data Berhasil Ditambah!'));
+            return 1;
+        }else {
+            // header('Content-Type: application/json');
+            echo json_encode(array('status' => '0','message' => 'Data Gagal Ditambah!'));
+            return 0;
+        }
     }
 ?>
