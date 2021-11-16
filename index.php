@@ -54,7 +54,10 @@
                             <a id="navbar-menu" class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a id="navbar-menu" class="nav-link active" aria-current="page" href="#">CRUD Data Pegawai</a>
+                            <a id="navbar-menu" class="nav-link active" aria-current="page" href="src/Form/Data Pegawai/Lihat Data Pegawai/dataPegawai.php">CRUD Data Pegawai</a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="navbar-menu" class="nav-link active" aria-current="page" href="Authentification and Authorization/logout.php">Log Out</a>
                         </li>
                     </ul>
                 </div>

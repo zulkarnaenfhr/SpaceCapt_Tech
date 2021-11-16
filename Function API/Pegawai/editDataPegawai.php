@@ -10,7 +10,7 @@
         $Nama_Pegawai = $data["Nama_Pegawai"];
         $Kota_Asal_Pegawai = $data["Kota_Asal_Pegawai"];
 
-        $queryEditDataPegawai = mysqli_query($koneksi,"UPDATE pegawai SET Id_Pegawai='$Id_PegawaiLama',Id_Jabatan='$Id_Jabatan',Nama_Pegawai='$Nama_Pegawai',Kota_Asal_Pegawai='$Kota_Asal_Pegawai'");
+        $queryEditDataPegawai = mysqli_query($koneksi,"UPDATE pegawai SET Id_Pegawai='$Id_PegawaiBaru',Id_Jabatan='$Id_Jabatan',Nama_Pegawai='$Nama_Pegawai',Kota_Asal_Pegawai='$Kota_Asal_Pegawai' WHERE Id_Pegawai='$Id_PegawaiLama'");
 
         if ($queryEditDataPegawai) {
             echo json_encode(array('status' => '1','message' => 'Data Pegawai Berhasil Di Edit!'));

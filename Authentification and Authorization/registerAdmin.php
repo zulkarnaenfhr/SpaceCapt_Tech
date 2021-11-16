@@ -84,6 +84,9 @@
                     <li class="nav-item">
                         <a id="navbar-menu" class="nav-link active" aria-current="page" href="#">CRUD Data Pegawai</a>
                     </li>
+                    <li class="nav-item">
+                            <a id="navbar-menu" class="nav-link active" aria-current="page" href="logout.php">Log Out</a>
+                        </li>
                 </ul>
             </div>
         </div>

@@ -1,4 +1,14 @@
 <?php 
+    session_start();
+
+    if (!isset($_SESSION["loginPass"])) {
+        echo "<script>
+                document.location.href = '../../../../Authentification and Authorization/formLoginAdmin.php'
+            </script>";
+    }
+?>
+
+<?php 
     include '../../../../config.php';
     function cekIdPegawai ($keyword){
         global $koneksi;
@@ -16,6 +26,22 @@
     include '../../../../Function API/Pegawai/editDataPegawai.php';
     if (isset($_POST["editDataPegawai"])) {
         $queryEditDataPegawai = editDataPegawai($_POST);
+
+        if ($queryEditDataPegawai == 0) {
+            echo "<script>
+                    alert('Data Pegawai Gagal di Edit')
+                </script>";
+            echo "<script>
+                    document.location.href = '../Lihat Data Pegawai/dataPegawai.php'
+                </script>";  
+        }elseif ($queryEditDataPegawai == 1) {
+            echo "<script>
+                    alert('Data Pegawai Berhasil di Edit')
+                </script>";
+            echo "<script>
+                    document.location.href = '../Lihat Data Pegawai/dataPegawai.php'
+                </script>";  
+        }
     }
 ?>
 

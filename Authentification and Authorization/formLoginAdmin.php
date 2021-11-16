@@ -2,9 +2,9 @@
     session_start();
     include '../Function API/Admin/loginAdmin.php';
 
-    // if (isset($_SESSION["login"])) {
-    //     header('Location:../homepage.php');
-    // }
+    if (isset($_SESSION["loginPass"])) {
+        header('Location:../homepage.php');
+    }
 
     if (isset($_POST["login"])) {
         $username = $_POST["username"];
@@ -16,22 +16,27 @@
             echo "<script>
                     alert ('Password Tidak Cocok')
                 </script>";
-            header('Location:formLoginAdmin.php');
+            echo "<script>
+                    document.location.href = 'formLoginAdmin.php'
+                </script>";  
         }elseif ($loginAdmin == 1) {
-            $_SESSION["login"] = true;    
+            $_SESSION["loginPass"] = true;    
             echo "<script>
                 alert ('Selamat Datang')
             </script>";
-            header('Location:../index.php');
+            echo "<script>
+                    document.location.href = '../index.php'
+                </script>";  
         }elseif ($loginAdmin == 2) {
             echo "<script>
                     alert ('Username Tidak Ditemukan')
                 </script>";
-            header('Location:formLoginAdmin.php');
+            echo "<script>
+                    document.location.href = 'formLoginAdmin.php'
+                </script>";  
         }
     }
 ?>
-
 <!doctype html>
 <html lang="en">
 
