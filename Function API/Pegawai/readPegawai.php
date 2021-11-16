@@ -1,10 +1,11 @@
 <?php 
     $koneksi = new mysqli("localhost","root","","spacecapt_tech");
-    header('Content-Type: application/json');
+    header("Access-Control-Allow-Origin: *");
 
     $queryAmbilSeluruhDataPegawai = mysqli_query($koneksi,"SELECT * FROM pegawai INNER JOIN jabatan on pegawai.Id_Jabatan = jabatan.id_Jabatan");
 
     if ($queryAmbilSeluruhDataPegawai) {
+        header('Content-Type: application/json');
         $hasilData = array();
         while ($data = mysqli_fetch_array($queryAmbilSeluruhDataPegawai)) {
             array_push($hasilData,array(
@@ -15,7 +16,7 @@
                 'Kota_Asal_Pegawai' =>$data['Kota_Asal_Pegawai']
             ));
         }
-
         echo json_encode($hasilData);
     }
+
 ?>

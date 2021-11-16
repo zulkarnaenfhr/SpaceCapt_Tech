@@ -20,6 +20,10 @@ input::-webkit-inner-spin-button {
     margin-top: 1rem;
 }
 
+.dataRegister ul li input{
+    margin-left: 2rem;
+}
+
 .dataRegister ul li label {
     width: 200px;
 }

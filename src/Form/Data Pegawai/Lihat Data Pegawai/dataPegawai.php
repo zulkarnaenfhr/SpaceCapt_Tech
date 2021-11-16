@@ -1,13 +1,9 @@
 <?php 
-    // $sumber = '../../../../Function API/Pegawai/readPegawai.php';
-    // $konten = file_get_contents($sumber);
-    // $data = json_decode($konten,true);
-    // var_dump($data);
-
-    $konten = file_get_contents('../../../../Function API/Pegawai/readPegawai.php');
-    
-    echo $konten;
+    $apiReadPegawai = 'http://localhost/phpDasar/6.%20Tugas%20Rest%20Api/Function%20API/Pegawai/readPegawai.php';
+    $konten = file_get_contents($apiReadPegawai);
+    $data = json_decode($konten);
 ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -56,13 +52,13 @@
             <div class="container-fluid">
                 <div class="container tampilDataInformatika-content">
                     <div class="row">
-                        <h3 class="judulSection">Menampilkan Data Mahasiswa Informatika</h3>
+                        <h3 class="judulSection">Menampilkan Data Pegawai</h3>
                     </div>
                     <div class="row">
                         <div class="col-6 option-left">
                             <form action="" method="POST">
                                 <input type="text" name="cariNpm" autocomplete="off">
-                                <button type="submit" name="tombolCari">Cari Npm</button>
+                                <button type="submit" name="tombolCari">Cari Id Pegawai</button>
                             </form>
                         </div>
                         <div class="col-6 option-right">
@@ -78,13 +74,60 @@
                         <table class="tabelOutput">
                             <tr class="judulTabel">
                                 <th class="tableNoUrut">Nomor</th>
-                                <th class="tableNpm">NPM</th>
-                                <th class="tableNama">Nama</th>
-                                <th class="tableKota">Kota</th>
-                                <th class="tableFakultas">Fakultas</th>
-                                <th class="tableJurusan">Jurusan</th>
+                                <th class="tableIdPegawai">Id_Pegawai</th>
+                                <th class="tableIdJabatan">Id_Jabatan</th>
+                                <th class="tableNamaJabatan">Nama_Jabatan</th>
+                                <th class="tableNamaPegawai">Nama_Pegawai</th>
+                                <th class="tableKotaAsalPegawai">Kota_Asal_Pegawai</th>
                                 <th class="tableOption">Option</th>
                             </tr>
+                            <?php
+                                $id = 1;
+                                foreach ($data as $row) {
+                            ?>
+                            <tr>
+                                <th>
+                                    <?php echo $id++ ?>
+                                </th>
+                                <th>
+                                    <?php echo $row->Id_Pegawai ?>
+                                </th>
+                                <th>
+                                    <?php echo $row->Id_Jabatan ?>
+                                </th>
+                                <th>
+                                    <?php echo $row->Nama_Jabatan ?>
+                                </th>
+                                <th>
+                                    <?php echo $row->Nama_Pegawai ?>
+                                </th>
+                                <th>
+                                    <?php echo $row->Kota_Asal_Pegawai ?>
+                                </th>
+                                <th class="isi-tableOption">
+                                    <ul>
+                                            <li>
+                                                <form
+                                                    action=""
+                                                    name="hapusData"
+                                                    method="POST">
+                                                    <input type="hidden" name="npmHapus" value="<?php echo $row->Id_Pegawai ;?>">
+                                                    <button type="submit" name="hapusData">Hapus</button>
+                                                </form>
+                                            </li>
+                                            <li>
+                                                <form action="" method="POST">
+                                                    <input type="hidden" name="npmEdit" value="<?php echo $row->Id_Pegawai ;?>">
+                                                    <button type="submit" name="editData">Edit</button>
+                                                </form>
+                                            </li>
+                                        </ul>
+                                </th>
+                            </tr>
+
+
+                            <?php }
+                            ?>
                         </table>
                     </div>
                 </section>
