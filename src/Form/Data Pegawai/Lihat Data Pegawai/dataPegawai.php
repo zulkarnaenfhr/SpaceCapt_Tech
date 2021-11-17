@@ -10,9 +10,28 @@
 
 <?php 
     // code dibawah dimasukin if not set
-    $apiReadPegawai = 'http://localhost/phpDasar/6.%20Tugas%20Rest%20Api/Function%20API/Pegawai/readPegawai.php';
-    $konten = file_get_contents($apiReadPegawai);
-    $data = json_decode($konten);
+
+    if (isset($_POST["tombolCari"])) {
+        $keyword = $_POST["cariNpm"];
+
+        $apiCariPegawai = 'http://localhost/phpDasar/6.%20Tugas%20Rest%20Api/Function%20API/Pegawai/cariDataPegawai.php?keyword='.$keyword;
+        $konten = file_get_contents($apiCariPegawai);
+        $data = json_decode($konten);
+    }
+
+    if (isset($_POST["tombolTampilkanSemua"])) {
+        $apiReadPegawai = 'http://localhost/phpDasar/6.%20Tugas%20Rest%20Api/Function%20API/Pegawai/readPegawai.php';
+        $konten = file_get_contents($apiReadPegawai);
+        $data = json_decode($konten);
+    }
+
+    if (!isset($_POST["tombolCari"])) {
+        $apiReadPegawai = 'http://localhost/phpDasar/6.%20Tugas%20Rest%20Api/Function%20API/Pegawai/readPegawai.php';
+        $konten = file_get_contents($apiReadPegawai);
+        $data = json_decode($konten);
+    }
+    
+    
 
     // terus buat code buat di set in, ntar passing ke cariDataPegawai
 ?>
@@ -104,13 +123,18 @@
                         <h3 class="judulSection">Menampilkan Data Pegawai</h3>
                     </div>
                     <div class="row">
-                        <div class="col-6 option-left">
+                        <div class="col-4  option-left">
                             <form action="" method="POST">
                                 <input type="text" name="cariNpm" autocomplete="off">
                                 <button type="submit" name="tombolCari">Cari Id Pegawai</button>
                             </form>
                         </div>
-                        <div class="col-6 option-right">
+                        <div class="col-4 buttonTampilkanSemua">
+                            <form action="" method="post">
+                                <button type="submit" name="tombolTampilkanSemua">Tampilkan Semua Pegawai</button>
+                            </form>
+                        </div>
+                        <div class="col-4 option-right">
                             <a href="../Tambah Data Pegawai/tambahDataPegawai.php">
                                 <button>Masukkan Data Baru</button>
                             </a>

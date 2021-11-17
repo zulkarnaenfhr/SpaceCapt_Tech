@@ -1,7 +1,10 @@
 <?php 
     $koneksi = new mysqli("localhost","root","","spacecapt_tech");
+    
+    $keyword = $_GET["keyword"];
 
-    $queryAmbilSeluruhDataPegawai = mysqli_query($koneksi,"SELECT * FROM pegawai INNER JOIN jabatan on pegawai.Id_Jabatan = jabatan.id_Jabatan");
+    $queryAmbilSeluruhDataPegawai = mysqli_query($koneksi,"SELECT * FROM pegawai INNER JOIN jabatan on pegawai.Id_Jabatan = jabatan.id_Jabatan WHERE pegawai.Id_Pegawai = '$keyword'");
+
 
     if ($queryAmbilSeluruhDataPegawai) {
         header('Content-Type: application/json');
