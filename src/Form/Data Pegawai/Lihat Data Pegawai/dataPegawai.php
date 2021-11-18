@@ -12,7 +12,7 @@
     // code dibawah dimasukin if not set
 
     if (isset($_POST["tombolCari"])) {
-        $keyword = $_POST["cariNpm"];
+        $keyword = $_POST["idPegawai"];
 
         $apiCariPegawai = 'http://localhost/phpDasar/6.%20Tugas%20Rest%20Api/Function%20API/Pegawai/cariDataPegawai.php?keyword='.$keyword;
         $konten = file_get_contents($apiCariPegawai);
@@ -30,10 +30,6 @@
         $konten = file_get_contents($apiReadPegawai);
         $data = json_decode($konten);
     }
-    
-    
-
-    // terus buat code buat di set in, ntar passing ke cariDataPegawai
 ?>
 <?php 
     include '../../../../Function API/pegawai/hapusPegawai.php';
@@ -125,7 +121,7 @@
                     <div class="row">
                         <div class="col-4  option-left">
                             <form action="" method="POST">
-                                <input type="text" name="cariNpm" autocomplete="off">
+                                <input type="text" name="idPegawai" autocomplete="off">
                                 <button type="submit" name="tombolCari">Cari Id Pegawai</button>
                             </form>
                         </div>

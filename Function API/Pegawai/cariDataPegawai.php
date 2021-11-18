@@ -18,8 +18,8 @@
                 'Kota_Asal_Pegawai' =>$data['Kota_Asal_Pegawai']
             ));
         }
-    // header('Content-Type: application/json');
         echo json_encode($hasilData);
+    }else {
+        echo json_encode("salah");
     }
-
 ?>
