@@ -17,6 +17,7 @@
         $apiCariPegawai = 'http://localhost/phpDasar/6.%20Tugas%20Rest%20Api/Function%20API/Pegawai/cariDataPegawai.php?keyword='.$keyword;
         $konten = file_get_contents($apiCariPegawai);
         $data = json_decode($konten);
+        echo $data->Id_Pegawai;
     }
 
     if (isset($_POST["tombolTampilkanSemua"])) {
